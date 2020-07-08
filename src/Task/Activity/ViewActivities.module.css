@@ -1,0 +1,14 @@
+.ActivityHeader {
+  padding: 50px;
+  text-align: center;
+  background: #1abc9c;
+  border: crimson;
+  color: white;
+  font-size: 36px;
+  text-transform: capitalize;
+}
+
+.ActivityList {
+  align-content: center;
+  padding: 15px;
+}
