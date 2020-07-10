@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import UserInfo from "./UserInfo/UserInfo";
 import TaskLandingPage from "./Task/Landing/TaskLandingPage";
 import { Route } from "react-router-dom";
 import TaskView from "./Task/TaskView/TaskView";

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import uuid from "react-uuid";
 import { withRouter } from "react-router-dom";
 import { properties } from "../../Property";
 import classes from "./NewTask.module.css";
@@ -53,7 +52,6 @@ class NewTask extends Component {
   };
 
   render() {
-    console.log("Add activity page");
     return (
       <div>
         <p className={classes.Header}>

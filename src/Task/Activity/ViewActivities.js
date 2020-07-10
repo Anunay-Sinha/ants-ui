@@ -4,7 +4,7 @@ import Activity from "./Activity";
 import { withRouter } from "react-router-dom";
 import { properties } from "../../Property";
 import classes from "./ViewActivities.module.css";
-import { Line, Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 class ViewActivities extends Component {
   state = {
@@ -58,6 +58,7 @@ class ViewActivities extends Component {
             activityList.push(activity);
             labelData.push(this.dateFormatter(x.timestamp));
             activityEntryData.push(x.data);
+            return x;
           });
           const lineData = {
             labels: labelData,

@@ -20,8 +20,8 @@ class AddActivity extends Component {
       data: this.state.inputValue,
       taskId: this.props.match.params.taskId,
     };
+    console.log("request body for post activity");
     console.log(reqBody);
-    console.log(this.props.match.params.taskId);
     axios
       .post(
         properties.appURL +
@@ -42,7 +42,6 @@ class AddActivity extends Component {
   };
 
   render() {
-    console.log("Add activity page");
     return (
       <div>
         <p className={classes.Header}>

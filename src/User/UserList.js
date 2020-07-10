@@ -12,7 +12,6 @@ class UserList extends Component {
   };
 
   onTaskListClick = (event) => {
-    console.log(this.state);
     if (this.state.selectedUser === "" || this.state.selectedUser === "null") {
       console.log("selection not possible for null user");
     } else {
@@ -37,8 +36,8 @@ class UserList extends Component {
       .then((response) => {
         response.data.content.map((x) => {
           users.push(x);
+          return x;
         });
-        console.log(users);
         this.setState({ userList: users });
       })
       .catch((error) => {
@@ -48,10 +47,6 @@ class UserList extends Component {
   }
 
   render() {
-    let listusers = this.state.userList.map((user) => {
-      return <div>User : {user.username}</div>;
-    });
-
     return (
       <div>
         <p className={classes.UserHeader}>User Selector</p>

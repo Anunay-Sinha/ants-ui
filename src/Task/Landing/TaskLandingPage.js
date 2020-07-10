@@ -16,6 +16,21 @@ class TaskLandingPage extends Component {
     ],
   };
 
+  removeTask = (event) => {
+    if (window.confirm("Are you sure you want to delete ")) {
+      axios
+        .delete(properties.appURL + "/tasks/" + event.target.id)
+        .then((response) => {
+          console.log("Task got removed");
+          window.location.reload(false);
+        })
+        .catch((error) => {
+          console.log(error.response);
+          alert(error.response.data.message);
+        });
+    }
+  };
+
   componentDidMount() {
     let userId = this.props.match.params.userId;
     let dummyTask = {
@@ -25,7 +40,6 @@ class TaskLandingPage extends Component {
       lastEntryDate: "",
     };
     const tasks = [];
-    console.log(properties);
     axios
       .get(properties.appURL + "/tasks?userId=" + userId)
       .then((response) => {
@@ -38,8 +52,8 @@ class TaskLandingPage extends Component {
           task.lastEntry = x.lastEntry;
           task.dataCapturingFreqType = x.dataCapturingFreqType;
           task.datatype = x.datatype;
-          console.log(task);
           tasks.push(task);
+          return x;
         });
         this.setState({ taskState: tasks });
       })
@@ -52,6 +66,7 @@ class TaskLandingPage extends Component {
       <TaskList
         state={this.state}
         user={this.props.match.params.userId}
+        onRemoveTask={this.removeTask}
       ></TaskList>
     );
   }

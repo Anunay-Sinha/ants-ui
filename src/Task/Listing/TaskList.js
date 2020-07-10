@@ -9,7 +9,13 @@ class TaskList extends Component {
   };
   render() {
     let taskDisp = this.props.state.taskState.map((x) => {
-      return <TaskCard task={x} key={x.id}></TaskCard>;
+      return (
+        <TaskCard
+          task={x}
+          key={x.id}
+          onRemoveButton={this.props.onRemoveTask}
+        ></TaskCard>
+      );
     });
 
     return (
@@ -20,7 +26,6 @@ class TaskList extends Component {
 
         <div>
           <button className={classes.AddTaskButton} onClick={this.onNewTask}>
-            {console.log(this)}
             Create A New Task{" "}
           </button>
         </div>

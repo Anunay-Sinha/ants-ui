@@ -18,14 +18,23 @@ class TaskCard extends Component {
 
   dateFormatter = (dateString) => {
     let date = new Date(dateString);
-    console.log(date);
     return date.toLocaleDateString() + " " + date.toLocaleTimeString();
   };
 
   render() {
     return (
       <div className={classes.TaskCard}>
+        <div>
+          <button
+            id={this.props.task.id}
+            className={classes.RemoveButton}
+            onClick={this.props.onRemoveButton}
+          >
+            x
+          </button>
+        </div>
         <div className={classes.TaskHeader}>{this.props.task.subject}</div>
+
         <div className={classes.TaskId}>{this.props.task.description}</div>
         <hr></hr>
         <div className={classes.LastRecord}>
