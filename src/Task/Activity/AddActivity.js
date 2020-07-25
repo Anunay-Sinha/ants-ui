@@ -8,10 +8,20 @@ import classes from "./AddActivity.module.css";
 class AddActivity extends Component {
   state = {
     inputValue: "",
+    isForced: false,
+    inputDate: "",
+  };
+
+  handleCheckInputChange = (event) => {
+    this.setState({ isForced: event.target.checked });
   };
 
   handleChange = (event) => {
     this.setState({ inputValue: event.target.value });
+  };
+
+  handleDateChange = (event) => {
+    this.setState({ inputDate: event.target.value });
   };
 
   postActivity = () => {
@@ -19,7 +29,11 @@ class AddActivity extends Component {
       id: uuid(),
       data: this.state.inputValue,
       taskId: this.props.match.params.taskId,
+      forced: this.state.isForced,
     };
+    if (this.state.isForced) {
+      reqBody.timestamp = this.state.inputDate;
+    }
     console.log("request body for post activity");
     console.log(reqBody);
     axios
@@ -49,13 +63,35 @@ class AddActivity extends Component {
         </p>
         <div>
           <p className={classes.FieldHeader}> Add activity</p>
-          <input
-            className={classes.Input}
-            type="text"
-            name="recordText"
-            onChange={this.handleChange}
-            value={this.state.inputValue}
-          />
+          <div>
+            <input
+              className={classes.Input}
+              type="text"
+              name="recordText"
+              onChange={this.handleChange}
+              value={this.state.inputValue}
+            />
+          </div>
+          <div>
+            {this.state.isForced ? (
+              <input
+                className={classes.Input}
+                type="datetime-local"
+                name="recordDateTime"
+                onChange={this.handleDateChange}
+              />
+            ) : (
+              <div></div>
+            )}
+          </div>
+          <div>
+            <p>Add activity for custom date</p>
+            <input
+              type="checkbox"
+              name="forced"
+              onChange={this.handleCheckInputChange}
+            />
+          </div>
         </div>
         <button className={classes.Button} onClick={this.postActivity}>
           Record Activity
